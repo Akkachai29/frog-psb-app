@@ -1,0 +1,1388 @@
+/* ======================================================
+   FROG FARM PSB CALCULATOR
+   VERSION 3.2 COMPLETE
+====================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+
+  font-family:
+    Arial,
+    "Noto Sans Thai",
+    sans-serif;
+
+  background: #f3f7f4;
+
+  color: #173f32;
+}
+
+
+/* ======================================================
+   MAIN CONTAINER
+====================================================== */
+
+.container {
+  width: 100%;
+  max-width: 620px;
+
+  margin: 0 auto;
+
+  padding: 22px 16px 45px;
+}
+
+
+/* ======================================================
+   HEADER
+====================================================== */
+
+.header {
+  text-align: center;
+
+  margin-bottom: 26px;
+}
+
+.header-image {
+  width: 145px;
+  max-width: 50%;
+
+  height: auto;
+
+  display: block;
+
+  margin: 0 auto 8px;
+}
+
+.header h1 {
+  margin: 0 0 8px;
+
+  font-size: 28px;
+
+  line-height: 1.3;
+
+  color: #173f32;
+}
+
+.header p {
+  margin: 0;
+
+  font-size: 16px;
+
+  color: #66756f;
+}
+
+
+/* ======================================================
+   GENERAL CARD
+====================================================== */
+
+.card {
+  width: 100%;
+
+  background: #ffffff;
+
+  padding: 22px;
+
+  border-radius: 18px;
+
+  margin-bottom: 18px;
+
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ======================================================
+   SECTION TITLE
+====================================================== */
+
+.section-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+}
+
+.section-title h2 {
+  margin: 0;
+
+  font-size: 21px;
+}
+
+.step-number {
+  width: 34px;
+  height: 34px;
+
+  flex: 0 0 34px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: #18543f;
+
+  color: #ffffff;
+
+  font-size: 18px;
+
+  font-weight: bold;
+}
+
+
+/* ======================================================
+   LABEL
+====================================================== */
+
+label {
+  display: block;
+
+  margin: 16px 0 7px;
+
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+
+/* ======================================================
+   INPUT
+====================================================== */
+
+.input-row {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.input-row input {
+  flex: 1;
+
+  min-width: 0;
+
+  padding: 14px;
+
+  font-family: inherit;
+
+  font-size: 20px;
+
+  border:
+    1px solid #c9d4cf;
+
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  outline: none;
+}
+
+.input-row input:focus {
+  border-color: #18543f;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(24, 84, 63, 0.12);
+}
+
+.input-row span {
+  min-width: 68px;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  color: #53655e;
+}
+
+
+/* ======================================================
+   FULL INPUT
+====================================================== */
+
+.full-input {
+  width: 100%;
+
+  padding: 14px;
+
+  font-family: inherit;
+
+  font-size: 18px;
+
+  border:
+    1px solid #c9d4cf;
+
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  outline: none;
+}
+
+.full-input:focus {
+  border-color: #18543f;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(24, 84, 63, 0.12);
+}
+
+select.full-input {
+  cursor: pointer;
+}
+
+
+/* ======================================================
+   SAVED POND
+====================================================== */
+
+.pond-profile-actions {
+  display: grid;
+
+  grid-template-columns:
+    2fr 1fr;
+
+  gap: 10px;
+
+  margin-top: 16px;
+}
+
+.btn-save-pond {
+  padding: 12px;
+
+  background: #e8f3ed;
+
+  color: #18543f;
+
+  border:
+    1px solid #cce1d6;
+
+  font-size: 15px;
+}
+
+.btn-save-pond:hover {
+  background: #dcece4;
+}
+
+.btn-delete-pond {
+  padding: 12px;
+
+  background: #f8e8e8;
+
+  color: #a43e3e;
+
+  border:
+    1px solid #edd0d0;
+
+  font-size: 15px;
+}
+
+.btn-delete-pond:hover {
+  background: #f1dada;
+}
+
+.pond-profile-note {
+  margin: 10px 0 0;
+
+  padding: 9px 11px;
+
+  border-radius: 9px;
+
+  background: #f5f8f6;
+
+  color: #72817a;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+
+  text-align: center;
+}
+
+
+/* ======================================================
+   POND IMAGE
+====================================================== */
+
+.pond-image-wrapper {
+  text-align: center;
+
+  margin: 5px 0 10px;
+}
+
+.pond-image {
+  width: 190px;
+
+  max-width: 65%;
+
+  height: auto;
+
+  display: inline-block;
+}
+
+.helper-text {
+  margin: 0 0 8px;
+
+  padding: 10px 12px;
+
+  border-radius: 10px;
+
+  background: #f1f7f3;
+
+  color: #607169;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+
+  text-align: center;
+}
+
+
+/* ======================================================
+   BUTTON
+====================================================== */
+
+button {
+  border: none;
+
+  border-radius: 12px;
+
+  padding: 15px;
+
+  font-family: inherit;
+
+  font-size: 19px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+
+/* ======================================================
+   CALCULATE BUTTON
+====================================================== */
+
+.button-group {
+  display: grid;
+
+  grid-template-columns:
+    2fr 1fr;
+
+  gap: 12px;
+
+  margin-bottom: 18px;
+}
+
+.btn-primary {
+  background: #18543f;
+
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #123f30;
+}
+
+.btn-secondary {
+  background: #dfe7e3;
+
+  color: #173f32;
+}
+
+.btn-secondary:hover {
+  background: #d2ddd7;
+}
+
+
+/* ======================================================
+   RESULT
+====================================================== */
+
+.result-dashboard {
+  padding: 22px;
+}
+
+.result-header {
+  margin-bottom: 18px;
+}
+
+.result-header h2 {
+  margin: 0 0 4px;
+
+  font-size: 22px;
+}
+
+.result-header p {
+  margin: 0;
+
+  font-size: 14px;
+
+  color: #7a8983;
+}
+
+
+/* ======================================================
+   SUMMARY
+====================================================== */
+
+.summary-grid {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 12px;
+
+  margin-bottom: 14px;
+}
+
+.summary-box {
+  min-width: 0;
+
+  padding: 18px 14px;
+
+  border-radius: 15px;
+
+  background: #f5f9f6;
+
+  text-align: center;
+
+  border:
+    1px solid #e1ebe5;
+}
+
+.summary-label {
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #66756f;
+}
+
+.summary-value {
+  margin-top: 5px;
+
+  font-size: 33px;
+
+  font-weight: bold;
+
+  color: #18543f;
+}
+
+.summary-unit {
+  margin-top: 1px;
+
+  font-size: 14px;
+
+  color: #53655e;
+}
+
+.summary-sub {
+  margin-top: 7px;
+
+  font-size: 12px;
+
+  color: #83908b;
+}
+
+
+/* ======================================================
+   STATUS
+====================================================== */
+
+.status-area {
+  min-height: 58px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.status-badge {
+  display: inline-block;
+
+  padding: 7px 14px;
+
+  border-radius: 999px;
+
+  font-weight: bold;
+
+  background: #e9eeeb;
+
+  color: #4b5c55;
+}
+
+.status-large {
+  padding: 10px 18px;
+
+  font-size: 18px;
+}
+
+.status-low {
+  background: #dff5e6;
+
+  color: #18864b;
+}
+
+.status-medium {
+  background: #fff1c7;
+
+  color: #b77b00;
+}
+
+.status-high {
+  background: #ffe1c2;
+
+  color: #dc6f00;
+}
+
+.status-critical {
+  background: #ffd7d7;
+
+  color: #c62e2e;
+}
+
+
+/* ======================================================
+   WATER
+====================================================== */
+
+.water-card {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 16px;
+
+  border-radius: 15px;
+
+  margin-bottom: 14px;
+
+  background: #eef8f7;
+
+  border:
+    1px solid #d9ece9;
+}
+
+.water-icon {
+  width: 54px;
+  height: 54px;
+
+  flex: 0 0 54px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: #d8f1ee;
+
+  font-size: 28px;
+}
+
+.water-info {
+  flex: 1;
+}
+
+.water-title {
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #66756f;
+}
+
+.water-main {
+  margin-top: 2px;
+
+  font-size: 31px;
+
+  font-weight: bold;
+
+  color: #18685d;
+}
+
+.water-main small {
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+.water-sub {
+  margin-top: 2px;
+
+  font-size: 13px;
+
+  color: #71827c;
+}
+
+
+/* ======================================================
+   PSB
+====================================================== */
+
+.psb-dashboard {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  padding: 18px;
+
+  border-radius: 16px;
+
+  margin-bottom: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff8df,
+      #ffedb3
+    );
+}
+
+.psb-image-wrapper {
+  flex: 0 0 135px;
+}
+
+.psb-image {
+  width: 135px;
+
+  max-width: 100%;
+
+  height: auto;
+
+  display: block;
+}
+
+.psb-info {
+  flex: 1;
+
+  text-align: center;
+}
+
+.psb-title {
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+.psb-value {
+  margin-top: 4px;
+
+  font-size: 48px;
+
+  font-weight: bold;
+
+  color: #e18800;
+}
+
+.psb-value small {
+  font-size: 20px;
+
+  color: #745a25;
+}
+
+.psb-note {
+  margin-top: 5px;
+
+  font-size: 12px;
+
+  line-height: 1.4;
+
+  color: #806f43;
+}
+
+
+/* ======================================================
+   FORMULA
+====================================================== */
+
+.formula-box {
+  padding: 14px;
+
+  border-radius: 12px;
+
+  background: #f7f8f7;
+
+  text-align: center;
+
+  border:
+    1px dashed #cdd9d3;
+}
+
+.formula-title {
+  margin-bottom: 4px;
+
+  font-size: 13px;
+
+  font-weight: bold;
+
+  color: #5f7069;
+}
+
+.formula-text {
+  font-size: 15px;
+
+  font-weight: 600;
+
+  color: #173f32;
+}
+
+
+/* ======================================================
+   SAVE RECORD
+====================================================== */
+
+.btn-save {
+  width: 100%;
+
+  margin-top: 14px;
+
+  background: #e58d00;
+
+  color: #ffffff;
+}
+
+.btn-save:hover {
+  background: #c87800;
+}
+
+
+/* ======================================================
+   VERSION 3.2
+   TREND DASHBOARD
+====================================================== */
+
+.trend-card {
+  margin-top: 18px;
+}
+
+.trend-header {
+  margin-bottom: 8px;
+}
+
+.trend-header h2 {
+  margin: 0 0 4px;
+
+  font-size: 22px;
+}
+
+.trend-header p {
+  margin: 0;
+
+  font-size: 13px;
+
+  color: #7a8983;
+}
+
+
+/* ======================================================
+   CHART CARD
+====================================================== */
+
+.chart-card {
+  margin-top: 16px;
+
+  padding: 16px;
+
+  border-radius: 15px;
+
+  background: #f8faf9;
+
+  border:
+    1px solid #e1eae5;
+}
+
+.chart-title-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  gap: 10px;
+
+  margin-bottom: 10px;
+}
+
+.chart-title-row h3 {
+  margin: 0;
+
+  font-size: 17px;
+
+  color: #173f32;
+}
+
+.chart-title-row p {
+  margin: 3px 0 0;
+
+  font-size: 11px;
+
+  color: #83908b;
+}
+
+.chart-unit {
+  padding: 5px 9px;
+
+  border-radius: 999px;
+
+  background: #e7f1ec;
+
+  color: #315e4d;
+
+  font-size: 11px;
+
+  font-weight: bold;
+}
+
+
+/* ======================================================
+   CHART
+====================================================== */
+
+.chart-container {
+  width: 100%;
+
+  min-height: 240px;
+
+  overflow-x: auto;
+
+  border-radius: 10px;
+
+  background: #ffffff;
+}
+
+.chart-container svg {
+  width: 100%;
+
+  min-width: 520px;
+
+  height: auto;
+
+  display: block;
+}
+
+.chart-empty {
+  min-height: 230px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 20px;
+
+  text-align: center;
+
+  color: #8b9993;
+
+  font-size: 13px;
+}
+
+.chart-note {
+  margin: 12px 0 0;
+
+  padding: 9px 11px;
+
+  border-radius: 9px;
+
+  background: #f5f8f6;
+
+  text-align: center;
+
+  color: #7d8a85;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+}
+
+
+/* ======================================================
+   HISTORY
+====================================================== */
+
+.history-card {
+  margin-top: 18px;
+}
+
+.history-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 16px;
+}
+
+.history-header h2 {
+  margin: 0 0 3px;
+
+  font-size: 21px;
+}
+
+.history-header p {
+  margin: 0;
+
+  font-size: 12px;
+
+  color: #7b8984;
+}
+
+.btn-clear-history {
+  padding: 8px 11px;
+
+  font-size: 12px;
+
+  background: #f3e4e4;
+
+  color: #a33b3b;
+}
+
+.btn-clear-history:hover {
+  background: #ead1d1;
+}
+
+
+/* ======================================================
+   HISTORY LIST
+====================================================== */
+
+.history-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.empty-history {
+  padding: 20px;
+
+  text-align: center;
+
+  color: #8a9892;
+
+  background: #f7f9f8;
+
+  border-radius: 12px;
+}
+
+
+/* ======================================================
+   HISTORY ITEM
+====================================================== */
+
+.history-item {
+  padding: 14px;
+
+  border-radius: 13px;
+
+  background: #f7faf8;
+
+  border:
+    1px solid #e2ebe6;
+}
+
+.history-top {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  gap: 10px;
+
+  margin-bottom: 10px;
+}
+
+.history-pond {
+  font-size: 16px;
+
+  font-weight: bold;
+
+  color: #18543f;
+}
+
+.history-top-right {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.history-date {
+  font-size: 12px;
+
+  color: #74847d;
+}
+
+.btn-delete-record {
+  width: 28px;
+  height: 28px;
+
+  padding: 0;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: #f8e6e6;
+
+  color: #ae4444;
+
+  font-size: 13px;
+
+  font-weight: bold;
+}
+
+.btn-delete-record:hover {
+  background: #efd3d3;
+}
+
+
+/* ======================================================
+   HISTORY DATA
+====================================================== */
+
+.history-data {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 7px 12px;
+
+  font-size: 13px;
+}
+
+.history-data div {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 8px;
+}
+
+.history-data span {
+  color: #75847e;
+}
+
+.history-data strong {
+  color: #173f32;
+}
+
+
+/* ======================================================
+   HISTORY LEVEL
+====================================================== */
+
+.history-level {
+  display: inline-block;
+
+  margin-top: 10px;
+
+  padding: 5px 10px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+
+  font-weight: bold;
+}
+
+.history-level-low {
+  background: #dff5e6;
+
+  color: #18864b;
+}
+
+.history-level-medium {
+  background: #fff1c7;
+
+  color: #b77b00;
+}
+
+.history-level-high {
+  background: #ffe1c2;
+
+  color: #dc6f00;
+}
+
+.history-level-critical {
+  background: #ffd7d7;
+
+  color: #c62e2e;
+}
+
+
+/* ======================================================
+   MOBILE
+====================================================== */
+
+@media (max-width: 480px) {
+
+  .container {
+    padding:
+      16px 12px 32px;
+  }
+
+
+  .header-image {
+    width: 135px;
+
+    max-width: 50%;
+  }
+
+  .header h1 {
+    font-size: 23px;
+  }
+
+  .header p {
+    font-size: 14px;
+  }
+
+
+  .card {
+    padding: 18px;
+  }
+
+
+  .section-title h2 {
+    font-size: 19px;
+  }
+
+
+  .input-row input {
+    font-size: 18px;
+
+    padding: 13px;
+  }
+
+  .input-row span {
+    min-width: 55px;
+
+    font-size: 13px;
+  }
+
+
+  .full-input {
+    font-size: 17px;
+
+    padding: 13px;
+  }
+
+
+  .pond-image {
+    width: 175px;
+
+    max-width: 65%;
+  }
+
+
+  .pond-profile-actions {
+    grid-template-columns:
+      2fr 1fr;
+
+    gap: 8px;
+  }
+
+
+  .btn-save-pond,
+  .btn-delete-pond {
+    font-size: 13px;
+
+    padding: 11px 8px;
+  }
+
+
+  .button-group {
+    grid-template-columns:
+      2fr 1fr;
+
+    gap: 8px;
+  }
+
+  button {
+    font-size: 16px;
+
+    padding: 13px;
+  }
+
+
+  .summary-grid {
+    grid-template-columns:
+      1fr 1fr;
+
+    gap: 8px;
+  }
+
+  .summary-box {
+    padding: 15px 8px;
+  }
+
+  .summary-value {
+    font-size: 28px;
+  }
+
+
+  .status-large {
+    font-size: 16px;
+  }
+
+
+  .water-card {
+    padding: 14px;
+  }
+
+  .water-icon {
+    width: 48px;
+
+    height: 48px;
+
+    flex: 0 0 48px;
+
+    font-size: 24px;
+  }
+
+  .water-main {
+    font-size: 28px;
+  }
+
+
+  .psb-dashboard {
+    flex-direction: row;
+
+    gap: 10px;
+
+    padding: 14px;
+  }
+
+  .psb-image-wrapper {
+    flex: 0 0 105px;
+  }
+
+  .psb-image {
+    width: 105px;
+  }
+
+  .psb-title {
+    font-size: 14px;
+  }
+
+  .psb-value {
+    font-size: 40px;
+  }
+
+  .psb-value small {
+    font-size: 17px;
+  }
+
+  .psb-note {
+    font-size: 10px;
+  }
+
+
+  .chart-card {
+    padding: 12px;
+  }
+
+  .chart-container {
+    min-height: 220px;
+  }
+
+  .chart-container svg {
+    min-width: 480px;
+  }
+
+
+  .history-header {
+    align-items: flex-start;
+  }
+
+  .history-data {
+    grid-template-columns:
+      1fr;
+  }
+
+}
+
+
+/* ======================================================
+   VERY SMALL MOBILE
+====================================================== */
+
+@media (max-width: 360px) {
+
+  .header-image {
+    width: 120px;
+  }
+
+  .header h1 {
+    font-size: 21px;
+  }
+
+
+  .summary-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .button-group {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .pond-profile-actions {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .psb-dashboard {
+    flex-direction: column;
+  }
+
+  .psb-image-wrapper {
+    flex: none;
+  }
+
+  .psb-image {
+    width: 115px;
+
+    margin: 0 auto;
+  }
+
+}

@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Frog Farm PSB Calculator</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+</head>
+
+
+<body>
+
+  <main class="container">
+
+
+    <!-- ==========================================
+         HEADER
+    =========================================== -->
+
+    <section class="header">
+
+      <img
+        src="images/frog.png"
+        alt="กบ"
+        class="header-image"
+      />
+
+      <h1>
+        คำนวณ N_waste และปริมาณ PSB
+      </h1>
+
+      <p>
+        เครื่องมือช่วยจัดการคุณภาพน้ำสำหรับฟาร์มกบ
+      </p>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         1. POND INFORMATION
+    =========================================== -->
+
+    <section class="card">
+
+      <div class="section-title">
+
+        <span class="step-number">
+          1
+        </span>
+
+        <h2>
+          ข้อมูลบ่อ
+        </h2>
+
+      </div>
+
+
+      <label for="recordDate">
+        วันที่
+      </label>
+
+      <input
+        type="date"
+        id="recordDate"
+        class="full-input"
+      />
+
+
+      <label for="pondSelect">
+        เลือกบ่อที่บันทึกไว้
+      </label>
+
+      <select
+        id="pondSelect"
+        class="full-input"
+        onchange="loadSelectedPond()"
+      >
+
+        <option value="">
+          -- บ่อใหม่ / ยังไม่ได้เลือก --
+        </option>
+
+      </select>
+
+
+      <label for="pondName">
+        ชื่อบ่อ
+      </label>
+
+      <input
+        type="text"
+        id="pondName"
+        class="full-input"
+        placeholder="เช่น บ่อ 1"
+      />
+
+
+      <div class="pond-profile-actions">
+
+        <button
+          type="button"
+          class="btn-save-pond"
+          onclick="savePondProfile()"
+        >
+          บันทึกข้อมูลบ่อนี้
+        </button>
+
+        <button
+          type="button"
+          class="btn-delete-pond"
+          onclick="deleteSelectedPond()"
+        >
+          ลบบ่อ
+        </button>
+
+      </div>
+
+
+      <p class="pond-profile-note">
+
+        บันทึกชื่อและขนาดบ่อไว้
+        เพื่อไม่ต้องกรอกขนาดบ่อใหม่ทุกวัน
+
+      </p>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         2. FEED
+    =========================================== -->
+
+    <section class="card">
+
+      <div class="section-title">
+
+        <span class="step-number">
+          2
+        </span>
+
+        <h2>
+          ข้อมูลการให้อาหาร
+        </h2>
+
+      </div>
+
+
+      <label for="feed">
+        ปริมาณอาหารที่ให้ต่อวัน
+      </label>
+
+      <div class="input-row">
+
+        <input
+          type="number"
+          id="feed"
+          step="0.01"
+          min="0"
+          placeholder="เช่น 5"
+        />
+
+        <span>
+          kg/day
+        </span>
+
+      </div>
+
+
+      <label for="protein">
+        โปรตีนในอาหาร
+      </label>
+
+      <div class="input-row">
+
+        <input
+          type="number"
+          id="protein"
+          step="0.1"
+          min="0"
+          max="100"
+          placeholder="เช่น 35"
+        />
+
+        <span>
+          %
+        </span>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         3. POND SIZE
+    =========================================== -->
+
+    <section class="card">
+
+      <div class="section-title">
+
+        <span class="step-number">
+          3
+        </span>
+
+        <h2>
+          ขนาดบ่อ
+        </h2>
+
+      </div>
+
+
+      <div class="pond-image-wrapper">
+
+        <img
+          src="images/pond.png"
+          alt="ตัวอย่างการวัดขนาดบ่อ"
+          class="pond-image"
+        />
+
+      </div>
+
+
+      <p class="helper-text">
+
+        กรอกขนาดบ่อและระดับความลึกของน้ำ
+        เพื่อคำนวณปริมาตรน้ำในบ่อ
+
+      </p>
+
+
+      <label for="width">
+        ความกว้างบ่อ
+      </label>
+
+      <div class="input-row">
+
+        <input
+          type="number"
+          id="width"
+          step="0.01"
+          min="0"
+          placeholder="เช่น 4"
+        />
+
+        <span>
+          m
+        </span>
+
+      </div>
+
+
+      <label for="length">
+        ความยาวบ่อ
+      </label>
+
+      <div class="input-row">
+
+        <input
+          type="number"
+          id="length"
+          step="0.01"
+          min="0"
+          placeholder="เช่น 5"
+        />
+
+        <span>
+          m
+        </span>
+
+      </div>
+
+
+      <label for="depth">
+        ระดับความลึกของน้ำ
+      </label>
+
+      <div class="input-row">
+
+        <input
+          type="number"
+          id="depth"
+          step="0.01"
+          min="0"
+          placeholder="เช่น 0.5"
+        />
+
+        <span>
+          m
+        </span>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         CALCULATE
+    =========================================== -->
+
+    <section class="button-group">
+
+      <button
+        class="btn-primary"
+        onclick="calculate()"
+      >
+        คำนวณ
+      </button>
+
+      <button
+        class="btn-secondary"
+        onclick="resetForm()"
+      >
+        ล้างค่า
+      </button>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         RESULT
+    =========================================== -->
+
+    <section class="card result-dashboard">
+
+      <div class="result-header">
+
+        <h2>
+          ผลการคำนวณ
+        </h2>
+
+        <p>
+          สรุปข้อมูลสำหรับการจัดการบ่อ
+        </p>
+
+      </div>
+
+
+      <div class="summary-grid">
+
+        <!-- N_waste -->
+
+        <div class="summary-box">
+
+          <div class="summary-label">
+            N_waste
+          </div>
+
+          <div class="summary-value">
+
+            <span id="nwaste">
+              -
+            </span>
+
+          </div>
+
+          <div class="summary-unit">
+            kg/day
+          </div>
+
+          <div class="summary-sub">
+
+            <span id="nwasteGram">
+              -
+            </span>
+
+            g/day
+
+          </div>
+
+        </div>
+
+
+        <!-- Level -->
+
+        <div class="summary-box">
+
+          <div class="summary-label">
+            ระดับของเสีย
+          </div>
+
+          <div class="status-area">
+
+            <span
+              id="levelBadge"
+              class="status-badge status-large"
+            >
+              -
+            </span>
+
+          </div>
+
+          <div class="summary-sub">
+            ประเมินจากค่า N_waste
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Water -->
+
+      <div class="water-card">
+
+        <div class="water-icon">
+          💧
+        </div>
+
+        <div class="water-info">
+
+          <div class="water-title">
+            ปริมาตรน้ำในบ่อ
+          </div>
+
+          <div class="water-main">
+
+            <span id="volume">
+              -
+            </span>
+
+            <small>
+              m³
+            </small>
+
+          </div>
+
+          <div class="water-sub">
+
+            เท่ากับ
+
+            <span id="volumeLiter">
+              -
+            </span>
+
+            ลิตร
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- PSB -->
+
+      <div class="psb-dashboard">
+
+        <div class="psb-image-wrapper">
+
+          <img
+            src="images/psb.png"
+            alt="PSB"
+            class="psb-image"
+          />
+
+        </div>
+
+        <div class="psb-info">
+
+          <div class="psb-title">
+            ปริมาณ PSB ที่แนะนำ
+          </div>
+
+          <div class="psb-value">
+
+            <span id="psb">
+              -
+            </span>
+
+            <small>
+              ml
+            </small>
+
+          </div>
+
+          <div class="psb-note">
+
+            คำนวณจากเกณฑ์เชิงประจักษ์ของโครงการ
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="formula-box">
+
+        <div class="formula-title">
+          เกณฑ์การคำนวณ
+        </div>
+
+        <div class="formula-text">
+          PSB = N_waste × ปริมาตรน้ำในบ่อ
+        </div>
+
+      </div>
+
+
+      <button
+        class="btn-save"
+        onclick="saveRecord()"
+      >
+        บันทึกข้อมูลวันนี้
+      </button>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         TREND DASHBOARD
+         VERSION 3.2
+    =========================================== -->
+
+    <section class="card trend-card">
+
+      <div class="trend-header">
+
+        <div>
+
+          <h2>
+            แนวโน้มย้อนหลัง
+          </h2>
+
+          <p>
+            ติดตามการเปลี่ยนแปลงของแต่ละบ่อ
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <label for="chartPondSelect">
+        เลือกบ่อที่ต้องการดูกราฟ
+      </label>
+
+      <select
+        id="chartPondSelect"
+        class="full-input"
+        onchange="renderCharts()"
+      >
+
+        <option value="">
+          -- ยังไม่มีข้อมูล --
+        </option>
+
+      </select>
+
+
+
+      <!-- N_waste Chart -->
+
+      <div class="chart-card">
+
+        <div class="chart-title-row">
+
+          <div>
+
+            <h3>
+              N_waste
+            </h3>
+
+            <p>
+              ของเสียไนโตรเจนย้อนหลัง
+            </p>
+
+          </div>
+
+          <div class="chart-unit">
+            kg/day
+          </div>
+
+        </div>
+
+
+        <div
+          id="nWasteChart"
+          class="chart-container"
+        >
+
+          <div class="chart-empty">
+            ยังไม่มีข้อมูลสำหรับแสดงกราฟ
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- PSB Chart -->
+
+      <div class="chart-card">
+
+        <div class="chart-title-row">
+
+          <div>
+
+            <h3>
+              ปริมาณ PSB
+            </h3>
+
+            <p>
+              ปริมาณ PSB ที่คำนวณย้อนหลัง
+            </p>
+
+          </div>
+
+          <div class="chart-unit">
+            ml
+          </div>
+
+        </div>
+
+
+        <div
+          id="psbChart"
+          class="chart-container"
+        >
+
+          <div class="chart-empty">
+            ยังไม่มีข้อมูลสำหรับแสดงกราฟ
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <p class="chart-note">
+
+        กราฟแสดงข้อมูลที่บันทึกไว้ในอุปกรณ์นี้
+        โดยเรียงตามวันที่จากเก่าไปใหม่
+
+      </p>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         HISTORY
+    =========================================== -->
+
+    <section class="card history-card">
+
+      <div class="history-header">
+
+        <div>
+
+          <h2>
+            ประวัติย้อนหลัง
+          </h2>
+
+          <p>
+            ข้อมูลที่บันทึกไว้ในอุปกรณ์นี้
+          </p>
+
+        </div>
+
+
+        <button
+          class="btn-clear-history"
+          onclick="clearHistory()"
+        >
+          ลบทั้งหมด
+        </button>
+
+      </div>
+
+
+      <div
+        id="historyList"
+        class="history-list"
+      >
+
+        <div class="empty-history">
+          ยังไม่มีข้อมูลที่บันทึก
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <script src="app.js"></script>
+
+</body>
+
+</html>
