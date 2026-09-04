@@ -1,6 +1,6 @@
 /* ======================================================
    FROG FARM PSB CALCULATOR
-   VERSION 3.2 COMPLETE
+   VERSION 3.2.1 COMPLETE
 ====================================================== */
 
 * {
@@ -771,7 +771,6 @@ button {
 
 
 /* ======================================================
-   VERSION 3.2
    TREND DASHBOARD
 ====================================================== */
 
@@ -1143,6 +1142,41 @@ button {
   background: #ffd7d7;
 
   color: #c62e2e;
+}
+
+
+/* ======================================================
+   VERSION 3.2.1
+   HISTORY LOAD MORE
+====================================================== */
+
+.history-more-wrapper {
+  margin-top: 14px;
+
+  text-align: center;
+}
+
+.btn-history-more {
+  width: 100%;
+
+  padding: 12px;
+
+  background: #e8f3ed;
+
+  color: #18543f;
+
+  border:
+    1px solid #cce1d6;
+
+  font-size: 15px;
+}
+
+.btn-history-more:hover {
+  background: #dcece4;
+}
+
+.btn-history-more.hidden {
+  display: none;
 }
 
 

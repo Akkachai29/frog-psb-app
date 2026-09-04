@@ -2,6 +2,17 @@ let currentResult = null;
 
 
 // ======================================================
+// VERSION 3.2.1
+// HISTORY PAGINATION
+// ======================================================
+
+const HISTORY_PAGE_SIZE = 10;
+
+let historyVisibleCount =
+  HISTORY_PAGE_SIZE;
+
+
+// ======================================================
 // START APP
 // ======================================================
 
@@ -141,20 +152,14 @@ function calculate() {
 
 
 
-  // ====================================================
-  // CONSTANTS
-  // ====================================================
+  const Rn =
+    0.31;
 
-  const Rn = 0.31;
 
   const nitrogenFraction =
     0.16;
 
 
-
-  // ====================================================
-  // N_waste
-  // ====================================================
 
   const proteinDecimal =
     protein / 100;
@@ -168,10 +173,6 @@ function calculate() {
 
 
 
-  // ====================================================
-  // WATER
-  // ====================================================
-
   const waterVolume =
     width *
     length *
@@ -183,47 +184,47 @@ function calculate() {
 
 
 
-  // ====================================================
-  // PSB
-  // Empirical dosing rule
-  // ====================================================
-
   const psb =
     nWaste *
     waterVolume;
 
 
 
-  // ====================================================
-  // N_waste LEVEL
-  // ====================================================
-
   let level = "";
 
   let levelClass = "";
 
 
-  if (nWaste < 0.1) {
+  if (
+    nWaste < 0.1
+  ) {
 
-    level = "ต่ำ";
+    level =
+      "ต่ำ";
 
     levelClass =
       "status-low";
 
   }
 
-  else if (nWaste < 0.5) {
+  else if (
+    nWaste < 0.5
+  ) {
 
-    level = "ปานกลาง";
+    level =
+      "ปานกลาง";
 
     levelClass =
       "status-medium";
 
   }
 
-  else if (nWaste <= 1.0) {
+  else if (
+    nWaste <= 1.0
+  ) {
 
-    level = "สูง";
+    level =
+      "สูง";
 
     levelClass =
       "status-high";
@@ -232,7 +233,8 @@ function calculate() {
 
   else {
 
-    level = "วิกฤต";
+    level =
+      "วิกฤต";
 
     levelClass =
       "status-critical";
@@ -240,10 +242,6 @@ function calculate() {
   }
 
 
-
-  // ====================================================
-  // DISPLAY
-  // ====================================================
 
   document.getElementById(
     "nwaste"
@@ -292,7 +290,6 @@ function calculate() {
 
 
 
-  // Save temporary result
   currentResult = {
 
     feed:
@@ -404,7 +401,9 @@ function savePondProfile() {
     );
 
 
-  if (!pondName) {
+  if (
+    !pondName
+  ) {
 
     alert(
       "กรุณากรอกชื่อบ่อ"
@@ -478,11 +477,14 @@ function savePondProfile() {
 
 
 
-  if (existingIndex >= 0) {
+  if (
+    existingIndex >= 0
+  ) {
 
     profiles[
       existingIndex
-    ] = newProfile;
+    ] =
+      newProfile;
 
   }
 
@@ -574,7 +576,9 @@ function loadPondProfiles(
 
 
 
-  if (selectedId !== null) {
+  if (
+    selectedId !== null
+  ) {
 
     select.value =
       String(
@@ -599,7 +603,9 @@ function loadSelectedPond() {
     ).value;
 
 
-  if (!selectedId) {
+  if (
+    !selectedId
+  ) {
 
     document.getElementById(
       "pondName"
@@ -629,7 +635,9 @@ function loadSelectedPond() {
     );
 
 
-  if (!pond) {
+  if (
+    !pond
+  ) {
 
     return;
 
@@ -676,7 +684,9 @@ function deleteSelectedPond() {
     ).value;
 
 
-  if (!selectedId) {
+  if (
+    !selectedId
+  ) {
 
     alert(
       "กรุณาเลือกบ่อที่ต้องการลบ"
@@ -706,7 +716,9 @@ function deleteSelectedPond() {
     );
 
 
-  if (!pond) {
+  if (
+    !pond
+  ) {
 
     return;
 
@@ -720,7 +732,9 @@ function deleteSelectedPond() {
     );
 
 
-  if (!confirmed) {
+  if (
+    !confirmed
+  ) {
 
     return;
 
@@ -787,12 +801,14 @@ function deleteSelectedPond() {
 
 
 // ======================================================
-// SAVE DAILY RECORD
+// SAVE RECORD
 // ======================================================
 
 function saveRecord() {
 
-  if (!currentResult) {
+  if (
+    !currentResult
+  ) {
 
     alert(
       "กรุณากดคำนวณก่อนบันทึกข้อมูล"
@@ -817,7 +833,9 @@ function saveRecord() {
 
 
 
-  if (!date) {
+  if (
+    !date
+  ) {
 
     alert(
       "กรุณาเลือกวันที่"
@@ -828,7 +846,9 @@ function saveRecord() {
   }
 
 
-  if (!pond) {
+  if (
+    !pond
+  ) {
 
     pond =
       "ไม่ระบุชื่อบ่อ";
@@ -901,6 +921,10 @@ function saveRecord() {
 
 
 
+  historyVisibleCount =
+    HISTORY_PAGE_SIZE;
+
+
   alert(
     "บันทึกข้อมูลเรียบร้อย"
   );
@@ -930,7 +954,9 @@ function getRecords() {
     );
 
 
-  if (!stored) {
+  if (
+    !stored
+  ) {
 
     return [];
 
@@ -971,6 +997,18 @@ function loadHistory() {
     );
 
 
+  const moreWrapper =
+    document.getElementById(
+      "historyMoreWrapper"
+    );
+
+
+  const moreButton =
+    document.getElementById(
+      "historyMoreButton"
+    );
+
+
   historyList.innerHTML =
     "";
 
@@ -987,13 +1025,32 @@ function loadHistory() {
       </div>
       `;
 
+
+    if (
+      moreWrapper
+    ) {
+
+      moreWrapper.style.display =
+        "none";
+
+    }
+
+
     return;
 
   }
 
 
 
-  records.forEach(
+  const visibleRecords =
+    records.slice(
+      0,
+      historyVisibleCount
+    );
+
+
+
+  visibleRecords.forEach(
     function (record) {
 
       const item =
@@ -1141,6 +1198,60 @@ function loadHistory() {
     }
   );
 
+
+
+  if (
+    moreWrapper &&
+    moreButton
+  ) {
+
+    if (
+      historyVisibleCount >=
+      records.length
+    ) {
+
+      moreWrapper.style.display =
+        "none";
+
+    }
+
+    else {
+
+      moreWrapper.style.display =
+        "block";
+
+
+      const remaining =
+        records.length -
+        historyVisibleCount;
+
+
+      moreButton.textContent =
+        remaining >
+        HISTORY_PAGE_SIZE
+          ? `ดูเพิ่มเติมอีก ${HISTORY_PAGE_SIZE} รายการ`
+          : `ดูเพิ่มเติมอีก ${remaining} รายการ`;
+
+    }
+
+  }
+
+}
+
+
+
+// ======================================================
+// SHOW MORE HISTORY
+// ======================================================
+
+function showMoreHistory() {
+
+  historyVisibleCount +=
+    HISTORY_PAGE_SIZE;
+
+
+  loadHistory();
+
 }
 
 
@@ -1153,7 +1264,9 @@ function getHistoryLevelClass(
   level
 ) {
 
-  if (level === "ต่ำ") {
+  if (
+    level === "ต่ำ"
+  ) {
 
     return (
       "history-level-low"
@@ -1162,7 +1275,9 @@ function getHistoryLevelClass(
   }
 
 
-  if (level === "ปานกลาง") {
+  if (
+    level === "ปานกลาง"
+  ) {
 
     return (
       "history-level-medium"
@@ -1171,7 +1286,9 @@ function getHistoryLevelClass(
   }
 
 
-  if (level === "สูง") {
+  if (
+    level === "สูง"
+  ) {
 
     return (
       "history-level-high"
@@ -1180,7 +1297,9 @@ function getHistoryLevelClass(
   }
 
 
-  if (level === "วิกฤต") {
+  if (
+    level === "วิกฤต"
+  ) {
 
     return (
       "history-level-critical"
@@ -1219,7 +1338,9 @@ function deleteRecord(
     );
 
 
-  if (!record) {
+  if (
+    !record
+  ) {
 
     return;
 
@@ -1233,7 +1354,9 @@ function deleteRecord(
     );
 
 
-  if (!confirmed) {
+  if (
+    !confirmed
+  ) {
 
     return;
 
@@ -1265,6 +1388,23 @@ function deleteRecord(
   );
 
 
+
+  if (
+    historyVisibleCount >
+    HISTORY_PAGE_SIZE &&
+    historyVisibleCount >
+    newRecords.length
+  ) {
+
+    historyVisibleCount =
+      Math.max(
+        HISTORY_PAGE_SIZE,
+        newRecords.length
+      );
+
+  }
+
+
   loadHistory();
 
   loadChartPondOptions();
@@ -1287,7 +1427,9 @@ function clearHistory() {
     );
 
 
-  if (!confirmed) {
+  if (
+    !confirmed
+  ) {
 
     return;
 
@@ -1297,6 +1439,10 @@ function clearHistory() {
   localStorage.removeItem(
     "frogFarmRecords"
   );
+
+
+  historyVisibleCount =
+    HISTORY_PAGE_SIZE;
 
 
   loadHistory();
@@ -1323,7 +1469,9 @@ function loadChartPondOptions(
     );
 
 
-  if (!select) {
+  if (
+    !select
+  ) {
 
     return;
 
@@ -1338,18 +1486,26 @@ function loadChartPondOptions(
     getRecords();
 
 
-  const ponds =
-    [
-      ...new Set(
-        records.map(
-          function (record) {
+  const ponds = [];
 
-            return record.pond;
 
-          }
+  records.forEach(
+    function (record) {
+
+      if (
+        !ponds.includes(
+          record.pond
         )
-      )
-    ];
+      ) {
+
+        ponds.push(
+          record.pond
+        );
+
+      }
+
+    }
+  );
 
 
 
@@ -1367,7 +1523,9 @@ function loadChartPondOptions(
       );
 
 
-    option.value = "";
+    option.value =
+      "";
+
 
     option.textContent =
       "-- ยังไม่มีข้อมูล --";
@@ -1446,7 +1604,7 @@ function loadChartPondOptions(
 
 
 // ======================================================
-// RENDER BOTH CHARTS
+// RENDER CHARTS
 // ======================================================
 
 function renderCharts() {
@@ -1457,7 +1615,9 @@ function renderCharts() {
     );
 
 
-  if (!select) {
+  if (
+    !select
+  ) {
 
     return;
 
@@ -1472,7 +1632,8 @@ function renderCharts() {
     getRecords();
 
 
-  let pondRecords =
+
+  const pondRecords =
     records.filter(
       function (record) {
 
@@ -1486,7 +1647,6 @@ function renderCharts() {
 
 
 
-  // Oldest → newest
   pondRecords.sort(
     function (a, b) {
 
@@ -1532,7 +1692,9 @@ function renderCharts() {
     pondRecords,
 
     function (record) {
+
       return record.nWaste;
+
     },
 
     4
@@ -1548,7 +1710,9 @@ function renderCharts() {
     pondRecords,
 
     function (record) {
+
       return record.psb;
+
     },
 
     2
@@ -1576,7 +1740,9 @@ function createLineChart(
     );
 
 
-  if (!container) {
+  if (
+    !container
+  ) {
 
     return;
 
@@ -1609,19 +1775,24 @@ function createLineChart(
   const width =
     600;
 
+
   const height =
     260;
 
 
   const margin = {
 
-    top: 22,
+    top:
+      22,
 
-    right: 24,
+    right:
+      24,
 
-    bottom: 58,
+    bottom:
+      58,
 
-    left: 65
+    left:
+      65
 
   };
 
@@ -1655,8 +1826,9 @@ function createLineChart(
 
 
   let maxValue =
-    Math.max(
-      ...values
+    Math.max.apply(
+      null,
+      values
     );
 
 
@@ -1664,13 +1836,15 @@ function createLineChart(
     maxValue <= 0
   ) {
 
-    maxValue = 1;
+    maxValue =
+      1;
 
   }
 
 
   maxValue =
-    maxValue * 1.15;
+    maxValue *
+    1.15;
 
 
 
@@ -1693,7 +1867,6 @@ function createLineChart(
 
 
 
-  // Background
   const background =
     createSVGElement(
       "rect"
@@ -1732,7 +1905,6 @@ function createLineChart(
 
 
 
-  // Horizontal grid
   const gridCount =
     4;
 
@@ -1744,7 +1916,8 @@ function createLineChart(
   ) {
 
     const ratio =
-      i / gridCount;
+      i /
+      gridCount;
 
 
     const y =
@@ -1849,7 +2022,6 @@ function createLineChart(
 
 
 
-  // X axis
   const xAxis =
     createSVGElement(
       "line"
@@ -1891,7 +2063,6 @@ function createLineChart(
 
 
 
-  // Y axis
   const yAxis =
     createSVGElement(
       "line"
@@ -1931,7 +2102,8 @@ function createLineChart(
 
 
 
-  const points = [];
+  const points =
+    [];
 
 
   records.forEach(
@@ -1987,15 +2159,22 @@ function createLineChart(
         chartHeight;
 
 
+
       points.push({
-        x: x,
-        y: y,
-        value: value
+
+        x:
+          x,
+
+        y:
+          y,
+
+        value:
+          value
+
       });
 
 
 
-      // X date label
       const dateLabel =
         createSVGElement(
           "text"
@@ -2045,7 +2224,6 @@ function createLineChart(
 
 
 
-  // Line
   if (
     points.length > 1
   ) {
@@ -2056,8 +2234,7 @@ function createLineChart(
       );
 
 
-    polyline.setAttribute(
-      "points",
+    const pointText =
       points
         .map(
           function (point) {
@@ -2068,7 +2245,12 @@ function createLineChart(
 
           }
         )
-        .join(" ")
+        .join(" ");
+
+
+    polyline.setAttribute(
+      "points",
+      pointText
     );
 
 
@@ -2106,7 +2288,6 @@ function createLineChart(
 
 
 
-  // Points
   points.forEach(
     function (point) {
 

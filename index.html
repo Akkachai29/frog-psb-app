@@ -128,10 +128,8 @@
 
 
       <p class="pond-profile-note">
-
         บันทึกชื่อและขนาดบ่อไว้
         เพื่อไม่ต้องกรอกขนาดบ่อใหม่ทุกวัน
-
       </p>
 
     </section>
@@ -234,10 +232,8 @@
 
 
       <p class="helper-text">
-
         กรอกขนาดบ่อและระดับความลึกของน้ำ
         เพื่อคำนวณปริมาตรน้ำในบ่อ
-
       </p>
 
 
@@ -352,8 +348,6 @@
 
       <div class="summary-grid">
 
-        <!-- N_waste -->
-
         <div class="summary-box">
 
           <div class="summary-label">
@@ -361,11 +355,7 @@
           </div>
 
           <div class="summary-value">
-
-            <span id="nwaste">
-              -
-            </span>
-
+            <span id="nwaste">-</span>
           </div>
 
           <div class="summary-unit">
@@ -373,19 +363,11 @@
           </div>
 
           <div class="summary-sub">
-
-            <span id="nwasteGram">
-              -
-            </span>
-
-            g/day
-
+            <span id="nwasteGram">-</span> g/day
           </div>
 
         </div>
 
-
-        <!-- Level -->
 
         <div class="summary-box">
 
@@ -414,8 +396,6 @@
 
 
 
-      <!-- Water -->
-
       <div class="water-card">
 
         <div class="water-icon">
@@ -429,27 +409,14 @@
           </div>
 
           <div class="water-main">
-
-            <span id="volume">
-              -
-            </span>
-
-            <small>
-              m³
-            </small>
-
+            <span id="volume">-</span>
+            <small>m³</small>
           </div>
 
           <div class="water-sub">
-
             เท่ากับ
-
-            <span id="volumeLiter">
-              -
-            </span>
-
+            <span id="volumeLiter">-</span>
             ลิตร
-
           </div>
 
         </div>
@@ -457,8 +424,6 @@
       </div>
 
 
-
-      <!-- PSB -->
 
       <div class="psb-dashboard">
 
@@ -479,21 +444,12 @@
           </div>
 
           <div class="psb-value">
-
-            <span id="psb">
-              -
-            </span>
-
-            <small>
-              ml
-            </small>
-
+            <span id="psb">-</span>
+            <small>ml</small>
           </div>
 
           <div class="psb-note">
-
             คำนวณจากเกณฑ์เชิงประจักษ์ของโครงการ
-
           </div>
 
         </div>
@@ -528,7 +484,6 @@
 
     <!-- ==========================================
          TREND DASHBOARD
-         VERSION 3.2
     =========================================== -->
 
     <section class="card trend-card">
@@ -568,8 +523,6 @@
 
 
 
-      <!-- N_waste Chart -->
-
       <div class="chart-card">
 
         <div class="chart-title-row">
@@ -607,8 +560,6 @@
       </div>
 
 
-
-      <!-- PSB Chart -->
 
       <div class="chart-card">
 
@@ -648,10 +599,8 @@
 
 
       <p class="chart-note">
-
         กราฟแสดงข้อมูลที่บันทึกไว้ในอุปกรณ์นี้
         โดยเรียงตามวันที่จากเก่าไปใหม่
-
       </p>
 
     </section>
@@ -693,10 +642,24 @@
         id="historyList"
         class="history-list"
       >
-
         <div class="empty-history">
           ยังไม่มีข้อมูลที่บันทึก
         </div>
+      </div>
+
+
+      <div
+        id="historyMoreWrapper"
+        class="history-more-wrapper"
+      >
+
+        <button
+          id="historyMoreButton"
+          class="btn-history-more"
+          onclick="showMoreHistory()"
+        >
+          ดูเพิ่มเติม
+        </button>
 
       </div>
 
